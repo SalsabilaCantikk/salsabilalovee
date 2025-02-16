@@ -1,31 +1,29 @@
-// Ambil elemen tombol dan teks
+// JavaScript for Animations and Interactions
 const loveButton = document.querySelector('.love-button');
 const greeting = document.querySelector('.greeting');
+const body = document.body;
 
-// Tambahkan event listener ke tombol
 loveButton.addEventListener('click', () => {
-    // Sembunyikan tombol
+    // Hide the button
     loveButton.style.display = 'none';
 
-    // Tampilkan teks
+    // Show the greeting
     greeting.classList.add('show');
 
-    // Fungsi untuk membuat balon
-    function createBalloon() {
+    // Create colorful balloons
+    const colors = ['#ff6f61', '#ffcc00', '#00ccff', '#ff00cc', '#00ff99'];
+    for (let i = 0; i < 30; i++) { // Increase the number of balloons
         const balloon = document.createElement('div');
         balloon.classList.add('balloon');
         balloon.style.left = `${Math.random() * 100}vw`;
-        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`; // Warna acak
+        balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         balloon.style.animationDuration = `${Math.random() * 4 + 3}s`;
         balloon.style.animationDelay = `${Math.random() * 2}s`;
         document.body.appendChild(balloon);
 
-        // Hapus balon setelah animasi selesai
+        // Remove balloon after animation ends
         balloon.addEventListener('animationend', () => {
             balloon.remove();
         });
     }
-
-    // Buat balon setiap 500ms
-    setInterval(createBalloon, 500);
 });
